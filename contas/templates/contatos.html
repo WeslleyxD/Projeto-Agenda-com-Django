@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+<title>Contatos/{{request.user}} </title>
+{% endblock %}
+
+{% block intro %}
+{% endblock %}
+
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<section>
+  <h2 class="intro">Contatos</h2>
+</section>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Nome</th>
+      <th scope="col">Número</th>
+      <th scope="col">Data Registro</th>
+      <th scope="col">Aniversário</th>
+      <th scope="col">Descrição</th>
+      <th scope="col">Categoria</th>
+      <th scope="col">Editar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      {% for contato in contatos %}
+      {% if contato.usuario == request.user %}
+      <td><a href="{% url 'ver_contato' contato.id %}">{{contato.nome_contato}} {{contato.sobrenome_contato}}</a></td>
+      <td>{{contato.telefone}}</td>
+      <td>{{contato.data_criacao|date:"d/m/Y - H:i"}}</td>
+      <td>{{contato.aniversario}}</td>
+      <td>{{contato.descricao}}</td>
+      <td>{{contato.categoria}}</td>
+      <td>
+        <a href="{% url 'excluir_contato' contato.id %}"><img src="{% static 'images/excluir.png' %}" alt="excluir"
+            style="width: 20px;"></a>
+        <a href="{% url 'update_contato' contato.id %}"><img src="{% static 'images/editar.jpg' %}" alt="editar"
+            style="width: 32px;"></a>
+      </td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+  </tbody>
+</table>
+
+
+<div class="login-button">
+  <a href="{% url 'cadastrar_contato' %}"><button type="button">Novo Contato</button></a>
+</div>
+
+
+{% else %}
+<h1>Agenda</h1>
+<p>Esta seção é somente para usuários logados. Para acessar sua agenda, faça o login. <a href="{% url 'login' %} ">Click
+    aqui</a>.</p>
+
+{% endif %}
+
+{% endblock %}

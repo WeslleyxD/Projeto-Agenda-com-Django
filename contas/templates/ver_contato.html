@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>ver_agenda</title>
+{% endblock %}
+
+{% block intro %}
+{% endblock %}
+
+
+{% block content %}
+<section>
+    <h2 class="intro"> {{contato.nome_contato.title}} {{contato.sobrenome_contato.title}} </h2>
+</section>
+<ul class="list-group">
+    <dl>
+        <li class="list-group-item">
+            <dt>ID</dt>
+            <dd>{{contato.id}}</dd>
+        </li>
+        <li class="list-group-item">
+            <dt>E-mail</dt>
+            <dd>{{contato.email}} </dd>
+        </li>
+        <li class="list-group-item">
+            <dt>Telefone</dt>
+            <dd>{{contato.telefone}} </dd>
+        </li>
+        <li class="list-group-item">
+            <dt>Data Aniversário</dt>
+            <dd>{{contato.aniversario}}</dd>
+        </li>
+        <li class="list-group-item">
+            <dt>Data Registro</dt>
+            <dd>{{contato.data_criacao}}</dd>
+        </li>
+        <li class="list-group-item">
+            <dt>Descrição</dt>
+            <dd>{{contato.descricao}}</dd>
+        </li>
+        <li class="list-group-item">
+            <dt>Categoria</dt>
+            <dd>{{contato.categoria}}</dd>
+        </li>
+    </dl>
+</ul>
+
+<div class="excluir-contato">
+    <a href="{% url 'contatos' %}"><button type="submit">Voltar</button></a>
+</div>
+{% endblock %}

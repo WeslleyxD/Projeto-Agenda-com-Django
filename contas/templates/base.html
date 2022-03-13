@@ -1,0 +1,109 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agendinha</title>
+
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+
+
+
+  {% block navbar %}
+  <header>
+    <nav class="nav-menu">
+      <div class="nav-menu-logo">
+        <a href="{% url 'index' %}"><img src="{% static 'images/logo.png' %}" alt="logo" style="width: 70px;"></a>
+        <a href="{% url 'index' %}">
+          <h1>Agendinha
+        </a></h1>
+      </div>
+      <div>
+        <ul class="nav-menu-lista">
+          <li class="nav-menu-lista-link"><a href="{% url 'index' %}">Início</a></li>
+          <li class="nav-menu-lista-link"><a href="#">Funções</a></li>
+          <li class="nav-menu-lista-link"><a href="{% url 'contatos' %}">Contatos</a></li>
+          <li class="nav-menu-lista-link"><a href="#sobre">Sobre</a></li>
+        </ul>
+      </div>
+      {% if not user.is_authenticated %}
+      <div class="login-button">
+        <a href="{% url 'login' %}"><button type="button">Login</button></a>
+      </div>
+      {% else %}
+      <div class="login-button">
+        <a href="{% url 'logout' %}"><button type="button">Logout</button></a>
+      </div>
+      {% endif %}
+    </nav>
+  </header>
+  {% endblock %}
+
+
+  {% block intro %}
+  <section>
+    <h2 class="intro">Registre seus amigos nos contatos <br> para nunca esquecê-los.</h2>
+  </section>
+
+  <h2>Acesse: admin/admin</h2>
+  {% endblock %}
+
+
+  {% block hr %}
+  <hr>
+  {% endblock %}
+
+
+  {% block messages %}
+  <!-- MESSAGES -->
+  {% if messages %}
+  {% for message in messages %}
+
+  {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+  <div class="alert alert-success" role="alert">
+    {{ message }}
+  </div>
+  {% endif %}
+
+  {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+  <div class="alert alert-danger" role="alert">
+    {{ message }}
+  </div>
+  {% endif %}
+
+  {% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+  <div class="alert alert-warning" role="alert">
+    {{ message }}
+  </div>
+  {% endif %}
+
+  {% endfor %}
+  {% endif %}
+
+  {% endblock %}
+
+
+  {% block content %}
+  {% endblock %}
+
+
+</body>
+
+
+</body>
+
+</html>

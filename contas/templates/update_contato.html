@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+<title>Excluir</title>
+{% endblock %}
+
+{% block intro %}
+{% endblock %}
+
+
+
+
+{% block content %}
+
+<form action="{% url 'update_contato' contato.id %}" method="post" class="form" autocomplete="off">
+  {% csrf_token %}
+
+  <div class="form-outline mb-4">
+    <label class="form-label">Nome</label>
+    <input type="text" class="form-control form-control-lg" name="nome" value="{{contato.nome_contato}}">
+  </div>
+
+  <div class="form-outline mb-4">
+    <label class="form-label">Sobrenome</label>
+    <input type="text" class="form-control form-control-lg" name="sobrenome" value="{{contato.sobrenome_contato}}">
+  </div>
+
+  <div class="form-outline mb-4">
+    <label class="form-label">E-mail</label>
+    <input type="email" class="form-control form-control-lg" name="email" value="{{contato.email}}">
+  </div>
+
+  <div class="form-outline mb-4">
+    <label class="form-label">Telefone</label>
+    <input type="number" class="form-control form-control-lg" name="telefone" value="{{contato.telefone}}">
+  </div>
+
+  <div class="form-outline mb-4">
+    <label class="form-label">Data Aniversário</label>
+    <input type="date" class="form-control form-control-lg" name="aniversario" value="{{contato.aniversario}}">
+  </div>
+
+  <div class="form-outline mb-4">
+    <label class="form-label">Descrição</label>
+    <input type="text" class="form-control form-control-lg" name="descricao" value="{{contato.descricao}}">
+  </div>
+
+  <div class="form-outline mb-4">
+    <label for="id_categoria">Categoria</label>
+    <select name="categoria" id="id_categoria" class="form-control" value="{{contato.categoria}}">
+      <option value="AMIGO" selected>Amigo</option>
+      <option value="FAMÍLIA">Família</option>
+      <option value="TRABALHO">Trabalho</option>
+      <option value="DESCONHECIDO">Desconhecido</option>
+    </select>
+  </div>
+
+  <button class="btn btn-primary btn-lg btn-block" type="submit">Salvar</button>
+
+</form>
+
+
+{% endblock %}

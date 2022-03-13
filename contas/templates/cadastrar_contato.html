@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+<title>Cadastrar/contatos/{{user}}</title>
+{% endblock %}
+
+
+
+{% block content %}
+
+<form action="{% url 'cadastrar_contato' %}" method="post" class="form" autocomplete="off">
+  {% csrf_token %}
+
+  <div class="form-outline mb-4">
+    <label class="form-label">Nome</label>
+    <input type="text" class="form-control form-control-lg" name="nome" value="{{request.POST.nome_contato}}">
+  </div>
+
+  <div class="form-outline mb-4">
+    <label class="form-label">Sobrenome</label>
+    <input type="text" class="form-control form-control-lg" name="sobrenome" value="{{request.POST.sobrenome_contato}}">
+  </div>
+
+  <div class="form-outline mb-4">
+    <label class="form-label">E-mail</label>
+    <input type="email" class="form-control form-control-lg" name="email" value="{{request.POST.email}}">
+  </div>
+
+  <div class="form-outline mb-4">
+    <label class="form-label">Telefone</label>
+    <input type="number" class="form-control form-control-lg" name="telefone" value="{{request.POST.telefone}}">
+  </div>
+
+  <div class="form-outline mb-4">
+    <label class="form-label">Data Aniversário</label>
+    <input type="date" class="form-control form-control-lg" name="aniversario">
+  </div>
+
+  <div class="form-outline mb-4">
+    <label class="form-label">Descrição</label>
+    <input type="text" class="form-control form-control-lg" name="descricao">
+  </div>
+
+  
+  <div class="form-outline mb-4">
+    <label for="id_categoria">Categoria</label>
+    <select name="categoria" id="id_categoria" class="form-control">
+      <option value="Amigo" selected>Amigo</option>
+      <option value="Família">Família</option>
+      <option value="Trabalho">Trabalho</option>
+      <option value="Desconhecido">Desconhecido</option>
+    </select>
+  </div>
+
+
+
+  <button class="btn btn-primary btn-lg btn-block" type="submit">Cadastrar</button>
+
+</form>
+
+
+
+
+{% endblock %}
